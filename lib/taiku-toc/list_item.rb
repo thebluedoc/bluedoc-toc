@@ -1,4 +1,4 @@
-module Barboon
+module TaikuToc
   class ListItem
     attr_accessor :title, :url, :depth, :id
 

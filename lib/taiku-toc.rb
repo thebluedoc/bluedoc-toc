@@ -1,8 +1,8 @@
-require "barboon/engine"
-require "barboon/list_item"
-require "barboon/content"
+require "taiku-toc/engine"
+require "taiku-toc/list_item"
+require "taiku-toc/content"
 
-module Barboon
+module TaikuToc
   def self.parse(raw, format: :yml)
     items = []
     datas = []

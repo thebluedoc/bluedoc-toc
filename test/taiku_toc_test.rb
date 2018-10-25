@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class Barboon::Test < ActiveSupport::TestCase
+class TaikuToc::Test < ActiveSupport::TestCase
   setup do
-    @content = Barboon.parse(read_file("sample.yml"))
+    @content = TaikuToc.parse(read_file("sample.yml"))
   end
 
   test "to_html" do
@@ -18,7 +18,7 @@ class Barboon::Test < ActiveSupport::TestCase
   end
 
   test "parse from json" do
-    content = Barboon.parse(read_file("sample.json"), format: :json)
+    content = TaikuToc.parse(read_file("sample.json"), format: :json)
     assert_equal 11, content.size
     assert_equal "Getting Started", content[0].title
     assert_equal "getting-started", content[0].url

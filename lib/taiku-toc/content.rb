@@ -1,4 +1,4 @@
-module Barboon
+module TaikuToc
   class Content
     extend Forwardable
 
@@ -23,7 +23,7 @@ module Barboon
     end
 
     def _render(format: :html)
-      ApplicationController.renderer.render(partial: "barboon/content", locals: { format: format, items: items })
+      ApplicationController.renderer.render(partial: "taiku-toc/content", locals: { format: format, items: items })
     end
 
     def initialize(items)

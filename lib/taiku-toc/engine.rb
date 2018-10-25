@@ -1,7 +1,7 @@
 require "rails/engine"
 
-module Barboom
+module TaikuToc
   class Engine < Rails::Engine
-    isolate_namespace Barboom
+    isolate_namespace TaikuToc
   end
 end
