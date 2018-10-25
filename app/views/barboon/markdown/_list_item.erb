@@ -1,0 +1,8 @@
+<%-
+  indent = "  " * item.depth
+-%>
+<%- if item.url -%>
+<%= indent %>- [<%= item.title %>](<%= item.url %>)
+<%- else -%>
+<%= indent %>- <%= item.title %>
+<%- end -%>
