@@ -1,48 +1,45 @@
--
-  title: "Getting Started"
-  url: "getting-started"
+---
+- title: Getting Started
+  url: getting-started
   depth: 0
   id: 999
--
-  title: "Datatbases"
+- title: Datatbases
+  url:
   depth: 0
--
-  title: "Install MySQL"
-  url: "install-mysql"
+  id:
+- title: Install MySQL
+  url: install-mysql
   depth: 1
   id: 1234
--
-  title: "Linux Install"
-  url: "install-mysql-linux"
+- title: Linux Install
+  url: install-mysql-linux
   depth: 2
   id: 223
--
-  title: "macOS Install"
-  url: "install-macos-linux"
+- title: macOS Install
+  url: install-macos-linux
   depth: 2
--
-  title: "Install PostgreSQL"
-  url: "install-postgresql"
+  id:
+- title: Install PostgreSQL
+  url: install-postgresql
   depth: 1
   id: 31234
--
-  title: "Homebew install PostgreSQL"
-  url: "homebrew-install-postgresql"
+- title: Homebew install PostgreSQL
+  url: homebrew-install-postgresql
   depth: 2
   id: 31235
--
-  title: "Configurations"
-  url: "configurations"
+- title: Configurations
+  url: configurations
   depth: 0
--
-  title: "Database config"
-  url: "config-database"
+  id:
+- title: Database config
+  url: config-database
   depth: 1
--
-  title: "Environments"
-  url: "config-environments"
+  id:
+- title: Environments
+  url: config-environments
   depth: 1
--
-  title: "Redis setup"
-  url: "config-redis"
+  id:
+- title: Redis setup
+  url: config-redis
   depth: 1
+  id:

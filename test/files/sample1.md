@@ -1,0 +1,6 @@
+- [Getting Started](getting-started)
+- No link line
+  -[Bad urls](install-mysql "asdg")
+    - [Complex urls](https://google.com/search?client=safari&_rls=en&t=12&q=Ruby+Rails)
+    - [Absolute link](/install-macos-linux)
+  - [Mail to](mailto:foo@bar.com)

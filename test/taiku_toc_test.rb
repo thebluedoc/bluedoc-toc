@@ -17,6 +17,11 @@ class TaikuToc::Test < ActiveSupport::TestCase
     assert_equal read_file("sample.json"), @content.to_json
   end
 
+  test "to_yaml" do
+    formated_yaml = YAML.dump(YAML.load(read_file("sample.yml")))
+    assert_equal formated_yaml, @content.to_yaml
+  end
+
   test "parse from json" do
     content = TaikuToc.parse(read_file("sample.json"), format: :json)
     assert_equal 11, content.size
@@ -34,5 +39,13 @@ class TaikuToc::Test < ActiveSupport::TestCase
     assert_equal "install-mysql", content[2].url
     assert_equal 1234, content[2].id
     assert_equal 1, content[2].depth
+  end
+
+  test "parse form markdown" do
+    content = TaikuToc.parse(read_file("sample1.md"), format: :markdown)
+    assert_equal 6, content.size
+
+    expected = [{"title"=>"Getting Started", "url"=>"getting-started", "depth"=>0, "id"=>nil}, {"title"=>"No link line", "url"=>nil, "depth"=>0, "id"=>nil}, {"title"=>"Bad urls", "url"=>"install-mysql", "depth"=>1, "id"=>nil}, {"title"=>"Complex urls", "url"=>"https://google.com/search?client=safari&_rls=en&t=12&q=Ruby+Rails", "depth"=>2, "id"=>nil}, {"title"=>"Absolute link", "url"=>"/install-macos-linux", "depth"=>2, "id"=>nil}, {"title"=>"Mail to", "url"=>"mailto:foo@bar.com", "depth"=>1, "id"=>nil}]
+    assert_equal expected, content.as_json
   end
 end

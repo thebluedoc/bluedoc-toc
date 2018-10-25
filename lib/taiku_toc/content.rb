@@ -4,10 +4,14 @@ module TaikuToc
 
     attr_accessor :items
 
-    def_delegators :@items, :[], :size, :<<, :map, :each
+    def_delegators :@items, :[], :size, :<<, :map, :each, :as_json
 
     def _dump
-      YAML.dump(records)
+      YAML.dump(items.as_json)
+    end
+
+    def to_yaml
+      _dump
     end
 
     def to_html

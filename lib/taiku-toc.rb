@@ -1,8 +1,16 @@
-require "taiku-toc/engine"
-require "taiku-toc/list_item"
-require "taiku-toc/content"
+require "taiku_toc/engine"
+require "taiku_toc/list_item"
+require "taiku_toc/content"
 
 module TaikuToc
+  extend ActiveSupport::Autoload
+
+  module Format
+    extend ActiveSupport::Autoload
+
+    autoload :Markdown
+  end
+
   def self.parse(raw, format: :yml)
     items = []
     datas = []
@@ -12,6 +20,8 @@ module TaikuToc
       datas = YAML.load(raw)
     when :json
       datas = JSON.load(raw)
+    when :markdown
+      datas = TaikuToc::Format::Markdown.load(raw)
     else
       raise "format: #{format} not implement"
     end
