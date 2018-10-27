@@ -8,7 +8,7 @@
   depth: 0
   id:
 - title: Install MySQL
-  url: install-mysql
+  url: /install-mysql
   depth: 1
   id: 1234
 - title: Linux Install
@@ -20,7 +20,7 @@
   depth: 2
   id:
 - title: Install PostgreSQL
-  url: install-postgresql
+  url: http://www.google.com/install-postgresql
   depth: 1
   id: 31234
 - title: Homebew install PostgreSQL

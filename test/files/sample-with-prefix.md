@@ -1,0 +1,11 @@
+- [Getting Started](https://localhost/foo/bar/getting-started)
+- Datatbases
+  - [Install MySQL](/install-mysql)
+    - [Linux Install](https://localhost/foo/bar/install-mysql-linux)
+    - [macOS Install](https://localhost/foo/bar/install-macos-linux)
+  - [Install PostgreSQL](http://www.google.com/install-postgresql)
+    - [Homebew install PostgreSQL](https://localhost/foo/bar/homebrew-install-postgresql)
+- [Configurations](https://localhost/foo/bar/configurations)
+  - [Database config](https://localhost/foo/bar/config-database)
+  - [Environments](https://localhost/foo/bar/config-environments)
+  - [Redis setup](https://localhost/foo/bar/config-redis)

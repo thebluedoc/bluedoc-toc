@@ -15,20 +15,24 @@ module BookLab
         _dump
       end
 
-      def to_html
-        _render(format: :html)
+      def to_html(prefix: nil)
+        _render(format: :html, prefix: prefix)
       end
 
-      def to_markdown
-        _render(format: :markdown)
+      def to_markdown(prefix: nil)
+        _render(format: :markdown, prefix: prefix)
       end
 
       def to_json
         items.to_json
       end
 
-      def _render(format: :html)
-        ApplicationController.renderer.render(partial: "booklab/toc/content", locals: { format: format, items: items })
+      def _render(format: :html, prefix: nil)
+        ApplicationController.renderer.render(partial: "booklab/toc/content", locals: { 
+          format: format, 
+          prefix: prefix,
+          items: items,
+        })
       end
 
       def initialize(items)

@@ -3,14 +3,19 @@ require 'test_helper'
 class BookLab::Toc::Test < ActiveSupport::TestCase
   setup do
     @content = BookLab::Toc.parse(read_file("sample.yml"))
+    @prefix = "https://localhost/foo/bar/"
   end
 
   test "to_html" do
     assert_equal read_file("sample.html").gsub(/>[\s]+</, "><").strip, @content.to_html.gsub(/>[\s]+</, "><").strip
   end
-
+  
   test "to_markdown" do
     assert_equal read_file("sample.md").strip, @content.to_markdown.strip
+  end
+  
+  test "to_markdown with prefix" do
+    assert_equal read_file("sample-with-prefix.md").strip, @content.to_markdown(prefix: @prefix).strip
   end
 
   test "to_json" do
@@ -36,7 +41,7 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     assert_equal 0, content[1].depth
 
     assert_equal "Install MySQL", content[2].title
-    assert_equal "install-mysql", content[2].url
+    assert_equal "/install-mysql", content[2].url
     assert_equal 1234, content[2].id
     assert_equal 1, content[2].depth
   end

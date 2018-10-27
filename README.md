@@ -26,7 +26,11 @@ $ bundle
 end
 
 @content = BookLab::Toc.parse(read_file("sample.json"), format: :json)
+@content.to_html
+@content.to_markdown
+@content.to_json
 @content = BookLab::Toc.parse(read_file("sample.md"), format: :markdown)
+@content.to_html(prefix: "https://booklab.io/booklab/docs/")
 ```
 
 ## Contributing

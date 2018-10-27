@@ -1,3 +1,9 @@
 <%- items.each do |item| -%>
+<% 
+	item.slug = item.url
+	if prefix && item.url && !item.slug.include?("/")
+		item.url = "#{prefix}#{item.slug}"
+	end
+%>
 <%= render partial: "booklab/toc/#{format}/list_item", locals: { item: item } -%>
 <%- end -%>
