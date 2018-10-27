@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class TaikuToc::Test < ActiveSupport::TestCase
+class BookLab::Toc::Test < ActiveSupport::TestCase
   setup do
-    @content = TaikuToc.parse(read_file("sample.yml"))
+    @content = BookLab::Toc.parse(read_file("sample.yml"))
   end
 
   test "to_html" do
@@ -23,7 +23,7 @@ class TaikuToc::Test < ActiveSupport::TestCase
   end
 
   test "parse from json" do
-    content = TaikuToc.parse(read_file("sample.json"), format: :json)
+    content = BookLab::Toc.parse(read_file("sample.json"), format: :json)
     assert_equal 11, content.size
     assert_equal "Getting Started", content[0].title
     assert_equal "getting-started", content[0].url
@@ -42,7 +42,7 @@ class TaikuToc::Test < ActiveSupport::TestCase
   end
 
   test "parse form markdown" do
-    content = TaikuToc.parse(read_file("sample1.md"), format: :markdown)
+    content = BookLab::Toc.parse(read_file("sample1.md"), format: :markdown)
     assert_equal 6, content.size
 
     expected = [{"title"=>"Getting Started", "url"=>"getting-started", "depth"=>0, "id"=>nil}, {"title"=>"No link line", "url"=>nil, "depth"=>0, "id"=>nil}, {"title"=>"Bad urls", "url"=>"install-mysql", "depth"=>1, "id"=>nil}, {"title"=>"Complex urls", "url"=>"https://google.com/search?client=safari&_rls=en&t=12&q=Ruby+Rails", "depth"=>2, "id"=>nil}, {"title"=>"Absolute link", "url"=>"/install-macos-linux", "depth"=>2, "id"=>nil}, {"title"=>"Mail to", "url"=>"mailto:foo@bar.com", "depth"=>1, "id"=>nil}]

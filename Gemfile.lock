@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    taiku-toc (0.1.0)
+    booklab-toc (0.1.0)
       rails (~> 5.2.1)
 
 GEM
@@ -120,8 +120,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  booklab-toc!
   mysql2
-  taiku-toc!
 
 BUNDLED WITH
    1.16.2

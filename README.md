@@ -1,14 +1,12 @@
-# Barboon
-Short description and motivation.
+# BookLab::Toc
 
-## Usage
-How to use my plugin.
+Book TOC read/write tool.
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'barboon'
+gem 'booklab-toc'
 ```
 
 And then execute:
@@ -16,13 +14,25 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install barboon
+## Usage
+
+```rb
+@content = BookLab::Toc.parse(read_file("sample.yml"))
+@content.each do |item|
+  puts item.id
+  puts item.title
+  puts item.url
+  puts item.depth
+end
+
+@content = BookLab::Toc.parse(read_file("sample.json"), format: :json)
+@content = BookLab::Toc.parse(read_file("sample.md"), format: :markdown)
 ```
 
 ## Contributing
+
 Contribution directions go here.
 
 ## License
+
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
