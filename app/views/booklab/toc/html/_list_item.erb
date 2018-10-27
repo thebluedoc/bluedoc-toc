@@ -1,6 +1,14 @@
 <li class="toc-item toc-item-<%= item.depth %>" data-id="<%= item.id %>">
+  <%- if item.url -%>
   <a href="<%= item.url %>" class="item-link">
+  <%- else -%>
+  <span class="item-link">
+  <%- end -%>
     <span class="item-title"><%= item.title %></span>
+  <%- if item.url -%>
   </a>
+  <%- else -%>
+  </span>
+  <%- end -%>
   <span class="item-slug"><%= item.slug %></span>
 </li>

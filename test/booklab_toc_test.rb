@@ -10,6 +10,10 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     assert_equal read_file("sample.html").gsub(/>[\s]+</, "><").strip, @content.to_html.gsub(/>[\s]+</, "><").strip
   end
   
+  test "to_html with prefix" do
+    assert_equal read_file("sample-with-prefix.html").gsub(/>[\s]+</, "><").strip, @content.to_html(prefix: @prefix).gsub(/>[\s]+</, "><").strip
+  end
+  
   test "to_markdown" do
     assert_equal read_file("sample.md").strip, @content.to_markdown.strip
   end
