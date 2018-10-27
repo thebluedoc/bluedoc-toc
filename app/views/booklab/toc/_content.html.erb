@@ -1,3 +1,4 @@
+<%= raw "<ul class=\"toc-items\">" if format == :html -%>
 <%- items.each do |item| -%>
 <% 
 	item.slug = item.url
@@ -7,3 +8,4 @@
 %>
 <%= render partial: "booklab/toc/#{format}/list_item", locals: { item: item } -%>
 <%- end -%>
+<%=  raw "</ul>" if format == :html -%>
