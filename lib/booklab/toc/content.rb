@@ -28,10 +28,20 @@ module BookLab
       end
 
       def _render(format: :html, prefix: nil)
+        render_items = []
+        items.each do |item|
+          new_item = item.dup
+          
+          new_item.slug = new_item.url
+          if prefix && new_item.url && !new_item.slug.include?("/")
+            new_item.url = "#{prefix}#{new_item.slug}"
+          end
+          render_items << new_item
+        end
+        
         ApplicationController.renderer.render(partial: "booklab/toc/content", locals: { 
           format: format, 
-          prefix: prefix,
-          items: items,
+          items: render_items,
         })
       end
 

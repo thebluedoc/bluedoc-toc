@@ -1,11 +1,7 @@
-<%= raw "<ul class=\"toc-items\">" if format == :html -%>
-<%- items.each do |item| -%>
-<% 
-	item.slug = item.url
-	if prefix && item.url && !item.slug.include?("/")
-		item.url = "#{prefix}#{item.slug}"
-	end
-%>
-<%= render partial: "booklab/toc/#{format}/list_item", locals: { item: item } -%>
-<%- end -%>
-<%=  raw "</ul>" if format == :html -%>
+<%- if format == :html -%>
+<ul class="toc-items">
+<%= render partial: "booklab/toc/#{format}/list_item", collection: items, as: :item -%>
+</ul>
+<% else %>
+<%= render partial: "booklab/toc/#{format}/list_item", collection: items, as: :item -%>
+<% end %>
