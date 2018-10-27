@@ -7,10 +7,12 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
   end
 
   test "to_html" do
+    # puts @content.to_html
     assert_equal read_file("sample.html").gsub(/>[\s]+</, "><").strip, @content.to_html.gsub(/>[\s]+</, "><").strip
   end
   
   test "to_html with prefix" do
+    # puts @content.to_html(prefix: @prefix)
     assert_equal read_file("sample-with-prefix.html").gsub(/>[\s]+</, "><").strip, @content.to_html(prefix: @prefix).gsub(/>[\s]+</, "><").strip
   end
   
