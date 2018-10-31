@@ -10,16 +10,16 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     # puts @content.to_html
     assert_equal read_file("sample.html").gsub(/>[\s]+</, "><").strip, @content.to_html.gsub(/>[\s]+</, "><").strip
   end
-  
+
   test "to_html with prefix" do
     # puts @content.to_html(prefix: @prefix)
     assert_equal read_file("sample-with-prefix.html").gsub(/>[\s]+</, "><").strip, @content.to_html(prefix: @prefix).gsub(/>[\s]+</, "><").strip
   end
-  
+
   test "to_markdown" do
     assert_equal read_file("sample.md").strip, @content.to_markdown.strip
   end
-  
+
   test "to_markdown with prefix" do
     assert_equal read_file("sample-with-prefix.md").strip, @content.to_markdown(prefix: @prefix).strip
   end
@@ -58,5 +58,17 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
 
     expected = [{"title"=>"Getting Started", "url"=>"getting-started", "depth"=>0, "id"=>nil}, {"title"=>"No link line", "url"=>nil, "depth"=>0, "id"=>nil}, {"title"=>"Bad urls", "url"=>"install-mysql", "depth"=>1, "id"=>nil}, {"title"=>"Complex urls", "url"=>"https://google.com/search?client=safari&_rls=en&t=12&q=Ruby+Rails", "depth"=>2, "id"=>nil}, {"title"=>"Absolute link", "url"=>"/install-macos-linux", "depth"=>2, "id"=>nil}, {"title"=>"Mail to", "url"=>"mailto:foo@bar.com", "depth"=>1, "id"=>nil}]
     assert_equal expected, content.as_json
+  end
+
+  test "parse with strict mode" do
+    bad_toc = <<~TOC
+    adsglkj
+    asdgkladsg
+    TOC
+
+    assert_raise(BookLab::Toc::FormatError) { BookLab::Toc.parse(bad_toc, format: :yaml, strict: true) }
+
+    content = BookLab::Toc.parse(bad_toc, format: :yaml)
+    assert_equal %(<ul class="toc-items">\n</ul>), content.to_html.strip
   end
 end

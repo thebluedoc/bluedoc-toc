@@ -5,28 +5,37 @@ require "booklab/toc/format/markdown"
 
 module BookLab
   module Toc
+    class FormatError < Exception; end
+
     extend ActiveSupport::Autoload
 
+    class << self
+      delegate :logger, to: Rails
 
-    def self.parse(raw, format: :yml)
-      items = []
-      datas = []
+      def parse(raw, format: :yml, strict: false)
+        items = []
+        datas = []
 
-      case format
-      when :yml
-        datas = YAML.load(raw)
-      when :json
-        datas = JSON.load(raw)
-      when :markdown
-        datas = Format::Markdown.load(raw)
-      else
-        raise "format: #{format} not implement"
+        case format
+        when :yml
+          datas = YAML.load(raw)
+        when :json
+          datas = JSON.load(raw)
+        when :markdown
+          datas = Format::Markdown.load(raw)
+        else
+          raise "format: #{format} not implement"
+        end
+
+        datas.each do |obj|
+          items << ListItem.new(obj.to_hash.deep_symbolize_keys)
+        end
+        Content.new(items)
+      rescue => e
+        raise FormatError.new(e.message) if strict
+        logger.warn "BookLab::Toc.parse error:\n#{e.inspect}"
+        Content.new([])
       end
-
-      datas.each do |obj|
-        items << ListItem.new(title: obj["title"], url: obj["url"], depth: obj["depth"], id: obj["id"])
-      end
-      Content.new(items)
     end
   end
 end
