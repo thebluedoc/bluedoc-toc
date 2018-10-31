@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    booklab-toc (0.1.0)
+    booklab-toc (0.1.1)
       rails (~> 5.2.1)
 
 GEM
@@ -57,7 +57,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -124,4 +124,4 @@ DEPENDENCIES
   mysql2
 
 BUNDLED WITH
-   1.16.2
+   1.17.1
