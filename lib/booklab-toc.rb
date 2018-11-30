@@ -28,7 +28,9 @@ module BookLab
         end
 
         datas.each do |obj|
-          items << ListItem.new(obj.to_hash.deep_symbolize_keys)
+          item_hash = obj.to_hash
+          item_hash.deep_symbolize_keys!
+          items << ListItem.new(id: item_hash[:id], title: item_hash[:title], url: item_hash[:url], depth: item_hash[:depth])
         end
         Content.new(items)
       rescue => e

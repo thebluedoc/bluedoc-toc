@@ -6,6 +6,32 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     @prefix = "https://localhost/foo/bar/"
   end
 
+  test "with a bad field" do
+    toc = <<~TOC
+    ---
+    - title: Getting Started
+      url: getting-started
+      depth: 0
+      id: 999
+      badField: foo
+    - title: Datatbases
+      url:
+      depth: 1
+      id:
+    TOC
+
+    content = BookLab::Toc.parse(toc)
+    assert_equal 2, content.size
+    assert_equal "Getting Started", content[0].title
+    assert_equal "getting-started", content[0].url
+    assert_equal 0, content[0].depth
+    assert_equal 999, content[0].id
+    assert_equal "Datatbases", content[1].title
+    assert_nil content[1].url
+    assert_equal 1, content[1].depth
+    assert_nil content[1].id
+  end
+
   test "to_html" do
     # puts @content.to_html
     assert_equal read_file("sample.html").gsub(/>[\s]+</, "><").strip, @content.to_html.gsub(/>[\s]+</, "><").strip
