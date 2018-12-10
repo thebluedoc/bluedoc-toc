@@ -78,12 +78,39 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     assert_equal 1, content[2].depth
   end
 
-  test "parse form markdown" do
+  test "parse from markdown" do
     content = BookLab::Toc.parse(read_file("sample1.md"), format: :markdown)
     assert_equal 6, content.size
+    assert_equal 0, content[0].depth
+    assert_equal 0, content[1].depth
+    assert_equal 1, content[2].depth
+    assert_equal 2, content[3].depth
 
     expected = [{"title"=>"Getting Started", "url"=>"getting-started", "depth"=>0, "id"=>nil}, {"title"=>"No link line", "url"=>nil, "depth"=>0, "id"=>nil}, {"title"=>"Bad urls", "url"=>"install-mysql", "depth"=>1, "id"=>nil}, {"title"=>"Complex urls", "url"=>"https://google.com/search?client=safari&_rls=en&t=12&q=Ruby+Rails", "depth"=>2, "id"=>nil}, {"title"=>"Absolute link", "url"=>"/install-macos-linux", "depth"=>2, "id"=>nil}, {"title"=>"Mail to", "url"=>"mailto:foo@bar.com", "depth"=>1, "id"=>nil}]
     assert_equal expected, content.as_json
+  end
+
+  test "parse from 4 space indent markdown" do
+    content = BookLab::Toc.parse(read_file("4space.md"), format: :markdown)
+    assert_equal 5, content.size
+    assert_equal 0, content[0].depth
+    assert_equal 1, content[1].depth
+    assert_equal 2, content[2].depth
+    assert_equal 1, content[3].depth
+    assert_equal 0, content[4].depth
+  end
+
+  test "parse from tab indent markdown" do
+    raw = "- [Hello](hello)\n\t- [World](world)\n\t\t[Foo](/foo)\n\t[Bar](/bar)"
+    content = BookLab::Toc.parse(raw, format: :markdown)
+    assert_equal "Hello", content[0].title
+    assert_equal "hello", content[0].url
+    assert_equal 0, content[0].depth
+    assert_equal "World", content[1].title
+    assert_equal "world", content[1].url
+    assert_equal 1, content[1].depth
+    assert_equal 2, content[2].depth
+    assert_equal 1, content[3].depth
   end
 
   test "parse with strict mode" do
