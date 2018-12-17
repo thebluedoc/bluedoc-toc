@@ -124,4 +124,20 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     content = BookLab::Toc.parse(bad_toc, format: :yaml)
     assert_equal %(<ul class="toc-items">\n</ul>), content.to_html.strip
   end
+
+  test "Array methods" do
+    assert_nil @content.find { |item| item.url == "not-exist-item" }
+    item = @content.find { |item| item.url == "install-mysql-linux" }
+    assert_equal @content[3], item
+    assert_equal "install-mysql-linux", item.url
+    assert_equal "Linux Install", item.title
+
+    assert_equal @content[3], @content.find_by_url("install-mysql-linux")
+    assert_equal item, @content.find_by_url("install-mysql-linux")
+
+    @content.sort { |a, b| a.title <=> b.title }
+    @content.sort_by { |a| a.title }
+    assert_equal 2, @content.take(2).length
+    assert_equal @content[0], @content.first
+  end
 end

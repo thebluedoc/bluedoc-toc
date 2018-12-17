@@ -5,7 +5,7 @@ module BookLab
 
       attr_accessor :items
 
-      def_delegators :@items, :[], :size, :<<, :map, :each, :as_json
+      def_delegators :@items, :[], :size, :<<, :map, :each, :each_with_index, :as_json, :find, :sort, :sort_by, :take, :first
 
       def _dump
         YAML.dump(items.as_json)
@@ -43,6 +43,10 @@ module BookLab
           format: format,
           items: render_items,
         })
+      end
+
+      def find_by_url(url)
+        items.find { |item| item.url&.strip == url&.strip }
       end
 
       def initialize(items)
