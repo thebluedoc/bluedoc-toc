@@ -42,12 +42,21 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     assert_equal read_file("sample-with-prefix.html").gsub(/>[\s]+</, "><").strip, @content.to_html(prefix: @prefix).gsub(/>[\s]+</, "><").strip
   end
 
+  test "to_html with prefix and suffix" do
+    html = @content.to_html(prefix: "./docs/", suffix: ".md")
+    assert_equal read_file("sample-with-suffix.html").gsub(/>[\s]+</, "><").strip, html.gsub(/>[\s]+</, "><").strip
+  end
+
   test "to_markdown" do
     assert_equal read_file("sample.md").strip, @content.to_markdown.strip
   end
 
   test "to_markdown with prefix" do
     assert_equal read_file("sample-with-prefix.md").strip, @content.to_markdown(prefix: @prefix).strip
+  end
+
+  test "to_markdown with prefix and suffix" do
+    assert_equal read_file("sample-with-suffix.md").strip, @content.to_markdown(prefix: "./docs/", suffix: ".md").strip
   end
 
   test "to_json" do

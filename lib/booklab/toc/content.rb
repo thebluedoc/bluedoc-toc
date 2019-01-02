@@ -15,26 +15,26 @@ module BookLab
         _dump
       end
 
-      def to_html(prefix: nil)
-        _render(format: :html, prefix: prefix)
+      def to_html(prefix: nil, suffix: nil)
+        _render(format: :html, prefix: prefix, suffix: suffix)
       end
 
-      def to_markdown(prefix: nil)
-        _render(format: :markdown, prefix: prefix)
+      def to_markdown(prefix: nil, suffix: nil)
+        _render(format: :markdown, prefix: prefix, suffix: suffix)
       end
 
       def to_json
         items.to_json
       end
 
-      def _render(format: :html, prefix: nil)
+      def _render(format: :html, prefix: nil, suffix: nil)
         render_items = []
         items.each do |item|
           new_item = item.dup
 
           new_item.slug = new_item.url
-          if prefix && new_item.url && !new_item.slug.include?("/")
-            new_item.url = "#{prefix}#{new_item.slug}"
+          if new_item.url && !new_item.slug.include?("/")
+            new_item.url = "#{prefix.to_s}#{new_item.slug}#{suffix.to_s}"
           end
           render_items << new_item
         end

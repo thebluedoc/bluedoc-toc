@@ -1,0 +1,11 @@
+- [Getting Started](./docs/getting-started.md)
+- Datatbases
+  - [Install MySQL](/install-mysql)
+    - [Linux Install](./docs/install-mysql-linux.md)
+    - [macOS Install](./docs/install-macos-linux.md)
+  - [Install PostgreSQL](http://www.google.com/install-postgresql)
+    - [Homebew install PostgreSQL](./docs/homebrew-install-postgresql.md)
+- [Configurations](./docs/configurations.md)
+  - [Database config](./docs/config-database.md)
+  - [Environments](./docs/config-environments.md)
+  - [Redis setup](./docs/config-redis.md)
