@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    booklab-toc (0.3.0)
+    booklab-toc (0.3.1)
       rails
 
 GEM
