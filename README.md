@@ -1,8 +1,9 @@
 # BlueDoc::Toc
 
-Book TOC read/write tool.
+BlueDoc Table of Contents parse library.
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
