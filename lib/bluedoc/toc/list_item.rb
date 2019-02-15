@@ -1,4 +1,4 @@
-module BookLab
+module BlueDoc
   module Toc
     class ListItem
       attr_accessor :title, :url, :slug, :depth, :id

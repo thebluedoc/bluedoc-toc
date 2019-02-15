@@ -1,4 +1,4 @@
-# BookLab::Toc
+# BlueDoc::Toc
 
 Book TOC read/write tool.
 
@@ -6,7 +6,7 @@ Book TOC read/write tool.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'booklab-toc'
+gem 'bluedoc-toc'
 ```
 
 And then execute:
@@ -17,7 +17,7 @@ $ bundle
 ## Usage
 
 ```rb
-@content = BookLab::Toc.parse(read_file("sample.yml"))
+@content = BlueDoc::Toc.parse(read_file("sample.yml"))
 @content.each do |item|
   puts item.id
   puts item.title
@@ -25,12 +25,12 @@ $ bundle
   puts item.depth
 end
 
-@content = BookLab::Toc.parse(read_file("sample.json"), format: :json)
+@content = BlueDoc::Toc.parse(read_file("sample.json"), format: :json)
 @content.to_html
 @content.to_markdown
 @content.to_json
-@content = BookLab::Toc.parse(read_file("sample.md"), format: :markdown)
-@content.to_html(prefix: "https://booklab.io/booklab/docs/")
+@content = BlueDoc::Toc.parse(read_file("sample.md"), format: :markdown)
+@content.to_html(prefix: "https://bluedoc.io/bluedoc/docs/")
 ```
 
 ## Contributing

@@ -1,4 +1,4 @@
-module BookLab
+module BlueDoc
   module Toc
     module Format
       class Markdown

@@ -3,7 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "booklab-toc"
+require "bluedoc-toc"
 
 module Dummy
   class Application < Rails::Application

@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class BookLab::Toc::Test < ActiveSupport::TestCase
+class BlueDoc::Toc::Test < ActiveSupport::TestCase
   setup do
-    @content = BookLab::Toc.parse(read_file("sample.yml"))
+    @content = BlueDoc::Toc.parse(read_file("sample.yml"))
     @prefix = "https://localhost/foo/bar/"
   end
 
@@ -20,7 +20,7 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
       id:
     TOC
 
-    content = BookLab::Toc.parse(toc)
+    content = BlueDoc::Toc.parse(toc)
     assert_equal 2, content.size
     assert_equal "Getting Started", content[0].title
     assert_equal "getting-started", content[0].url
@@ -69,7 +69,7 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
   end
 
   test "parse from json" do
-    content = BookLab::Toc.parse(read_file("sample.json"), format: :json)
+    content = BlueDoc::Toc.parse(read_file("sample.json"), format: :json)
     assert_equal 11, content.size
     assert_equal "Getting Started", content[0].title
     assert_equal "getting-started", content[0].url
@@ -88,7 +88,7 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
   end
 
   test "parse from markdown" do
-    content = BookLab::Toc.parse(read_file("sample1.md"), format: :markdown)
+    content = BlueDoc::Toc.parse(read_file("sample1.md"), format: :markdown)
     assert_equal 6, content.size
     assert_equal 0, content[0].depth
     assert_equal 0, content[1].depth
@@ -100,7 +100,7 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
   end
 
   test "parse from 4 space indent markdown" do
-    content = BookLab::Toc.parse(read_file("4space.md"), format: :markdown)
+    content = BlueDoc::Toc.parse(read_file("4space.md"), format: :markdown)
     assert_equal 5, content.size
     assert_equal 0, content[0].depth
     assert_equal 1, content[1].depth
@@ -111,7 +111,7 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
 
   test "parse from tab indent markdown" do
     raw = "- [Hello](hello)\n\t- [World](world)\n\t\t[Foo](/foo)\n\t[Bar](/bar)"
-    content = BookLab::Toc.parse(raw, format: :markdown)
+    content = BlueDoc::Toc.parse(raw, format: :markdown)
     assert_equal "Hello", content[0].title
     assert_equal "hello", content[0].url
     assert_equal 0, content[0].depth
@@ -128,9 +128,9 @@ class BookLab::Toc::Test < ActiveSupport::TestCase
     asdgkladsg
     TOC
 
-    assert_raise(BookLab::Toc::FormatError) { BookLab::Toc.parse(bad_toc, format: :yaml, strict: true) }
+    assert_raise(BlueDoc::Toc::FormatError) { BlueDoc::Toc.parse(bad_toc, format: :yaml, strict: true) }
 
-    content = BookLab::Toc.parse(bad_toc, format: :yaml)
+    content = BlueDoc::Toc.parse(bad_toc, format: :yaml)
     assert_equal %(<ul class="toc-items">\n</ul>), content.to_html.strip
   end
 

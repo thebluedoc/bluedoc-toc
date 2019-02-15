@@ -1,7 +1,7 @@
 <%- if format == :html -%>
 <ul class="toc-items">
-<%= render partial: "booklab/toc/#{format}/list_item", collection: items, as: :item -%>
+<%= render partial: "bluedoc/toc/#{format}/list_item", collection: items, as: :item -%>
 </ul>
 <% else %>
-<%= render partial: "booklab/toc/#{format}/list_item", collection: items, as: :item -%>
+<%= render partial: "bluedoc/toc/#{format}/list_item", collection: items, as: :item -%>
 <% end %>

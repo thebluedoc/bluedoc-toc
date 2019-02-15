@@ -1,9 +1,9 @@
 require "rails/engine"
 
-module BookLab
+module BlueDoc
   module Toc
     class Engine < Rails::Engine
-      isolate_namespace BookLab::Toc
+      isolate_namespace BlueDoc::Toc
     end
   end
 end

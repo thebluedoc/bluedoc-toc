@@ -1,4 +1,4 @@
-module BookLab
+module BlueDoc
   module Toc
     class Content
       extend Forwardable
@@ -39,7 +39,7 @@ module BookLab
           render_items << new_item
         end
 
-        ApplicationController.renderer.render(partial: "booklab/toc/content", locals: {
+        ApplicationController.renderer.render(partial: "bluedoc/toc/content", locals: {
           format: format,
           items: render_items,
         })

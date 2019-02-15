@@ -1,9 +1,9 @@
-require "booklab/toc/engine"
-require "booklab/toc/list_item"
-require "booklab/toc/content"
-require "booklab/toc/format/markdown"
+require "bluedoc/toc/engine"
+require "bluedoc/toc/list_item"
+require "bluedoc/toc/content"
+require "bluedoc/toc/format/markdown"
 
-module BookLab
+module BlueDoc
   module Toc
     class FormatError < Exception; end
 
@@ -35,7 +35,7 @@ module BookLab
         Content.new(items)
       rescue => e
         raise FormatError.new(e.message) if strict
-        logger.warn "BookLab::Toc.parse error:\n#{e.inspect}"
+        logger.warn "BlueDoc::Toc.parse error:\n#{e.inspect}"
         Content.new([])
       end
     end
